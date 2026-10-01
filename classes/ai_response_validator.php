@@ -33,7 +33,7 @@ class ai_response_validator {
      */
     public static function parse(string $text, array $allowedids): array {
         $text = trim($text);
-        if (preg_match('/^```(?:json)?\s*(.*?)\s*```$/s', $text, $match)) {
+        if (preg_match('/^\x60{3}(?:json)?\s*(.*?)\s*\x60{3}$/s', $text, $match)) {
             $text = trim($match[1]);
         }
 
