@@ -132,14 +132,14 @@ final class access_test extends advanced_testcase {
         $groupb = $this->getDataGenerator()->create_group(['courseid' => $course->id]);
         groups_add_member($groupa, $viewer);
         groups_add_member($groupb, $target);
-        $page = $this->getDataGenerator()->create_module('page', [
+        $forum = $this->getDataGenerator()->create_module('forum', [
             'course' => $course->id,
             'groupmode' => SEPARATEGROUPS,
         ]);
         $this->setUser($viewer);
 
         $this->expectException(required_capability_exception::class);
-        access::require_activity_target_user($course->id, $page->cmid, $target->id);
+        access::require_activity_target_user($course->id, $forum->cmid, $target->id);
     }
 
     /**
