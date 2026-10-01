@@ -30,7 +30,7 @@ The model must return JSON containing `summary`, `timeline`, `hypotheses`, and `
 more known evidence IDs. Unknown IDs such as an invented `E99` cause the entire explanation to be rejected. Hypotheses
 must be explicitly qualified as possibilities.
 
-## Supported modes
+## Analysis modes
 
 1. User + course + period.
 2. User + activity.
