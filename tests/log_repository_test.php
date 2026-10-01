@@ -49,14 +49,29 @@ class fake_sql_reader implements sql_reader {
         $this->event = $event;
     }
 
+    /**
+     * Method get_name.
+     *
+     * @return mixed Return value.
+     */
     public function get_name() {
         return 'Fake';
     }
 
+    /**
+     * Method get_description.
+     *
+     * @return mixed Return value.
+     */
     public function get_description() {
         return 'Fake reader';
     }
 
+    /**
+     * Method is_logging.
+     *
+     * @return mixed Return value.
+     */
     public function is_logging() {
         return true;
     }
