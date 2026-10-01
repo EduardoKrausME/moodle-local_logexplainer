@@ -26,6 +26,7 @@ use local_ai_bridge\api;
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class explainer {
+    /** @var string */
     public const PURPOSE = 'logexplainer-explain';
 
     /**

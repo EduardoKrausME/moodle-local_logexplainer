@@ -24,23 +24,36 @@ namespace local_logexplainer;
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class query {
+    /** @var string */
     public const MODE_USER_COURSE = 'usercourse';
+
+    /** @var string */
     public const MODE_USER_ACTIVITY = 'useractivity';
+
+    /** @var string */
     public const MODE_EVENT = 'event';
+
+    /** @var string */
     public const MODE_SUMMARY = 'summary';
 
     /** @var int Course id. */
     public int $courseid;
+
     /** @var string Mode. */
     public string $mode;
+
     /** @var int|null User id. */
     public ?int $userid;
+
     /** @var int|null Course module id. */
     public ?int $cmid;
+
     /** @var int Start timestamp. */
     public int $from;
+
     /** @var int End timestamp. */
     public int $to;
+
     /** @var string Exact event class/name filter. */
     public string $eventname;
 
