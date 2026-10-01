@@ -56,12 +56,12 @@ class query {
      * @param string $eventname Event class/name.
      */
     public function __construct(
-        int    $courseid,
+        int $courseid,
         string $mode,
-        ?int   $userid,
-        ?int   $cmid,
-        int    $from,
-        int    $to,
+        ?int $userid,
+        ?int $cmid,
+        int $from,
+        int $to,
         string $eventname = ''
     ) {
         $this->courseid = $courseid;
