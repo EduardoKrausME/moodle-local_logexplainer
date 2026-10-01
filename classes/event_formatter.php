@@ -59,7 +59,7 @@ class event_formatter {
         try {
             $name = (string)$event->get_name();
         } catch (Throwable $e) {
-            // Keep the class name.
+            $name = (string)$event->eventname;
         }
 
         $url = '';
@@ -149,4 +149,3 @@ class event_formatter {
         return $text;
     }
 }
-
