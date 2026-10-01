@@ -24,118 +24,13 @@
 
 namespace local_logexplainer;
 
+require_once(__DIR__ . '/fixtures/fake_sql_reader.php');
+
 use advanced_testcase;
-use ArrayIterator;
 use context_course;
 use core\event\base;
 use core\event\course_viewed;
 use core\log\sql_reader;
-use stdClass;
-use Traversable;
-
-/**
- * Small SQL reader used by repository unit tests.
- */
-class fake_sql_reader implements sql_reader {
-    /** @var base Event returned by the reader. */
-    private base $event;
-
-    /**
-     * Constructor.
-     *
-     * @param base $event Event.
-     */
-    public function __construct(base $event) {
-        $this->event = $event;
-    }
-
-    /**
-     * Method get_name.
-     *
-     * @return mixed Return value.
-     */
-    public function get_name() {
-        return 'Fake';
-    }
-
-    /**
-     * Method get_description.
-     *
-     * @return mixed Return value.
-     */
-    public function get_description() {
-        return 'Fake reader';
-    }
-
-    /**
-     * Method is_logging.
-     *
-     * @return mixed Return value.
-     */
-    public function is_logging() {
-        return true;
-    }
-
-    /**
-     * Return events.
-     *
-     * @param string $selectwhere SQL selector.
-     * @param array $params Parameters.
-     * @param string $sort Sort.
-     * @param int $limitfrom Offset.
-     * @param int $limitnum Limit.
-     * @return base[]
-     */
-    public function get_events_select($selectwhere, array $params, $sort, $limitfrom, $limitnum) {
-        return [$this->event];
-    }
-
-    /**
-     * Return event count.
-     *
-     * @param string $selectwhere SQL selector.
-     * @param array $params Parameters.
-     * @return int
-     */
-    public function get_events_select_count($selectwhere, array $params) {
-        return 1;
-    }
-
-    /**
-     * Return existence.
-     *
-     * @param string $selectwhere SQL selector.
-     * @param array $params Parameters.
-     * @return bool
-     */
-    public function get_events_select_exists(string $selectwhere, array $params): bool {
-        return true;
-    }
-
-    /**
-     * Return iterator.
-     *
-     * @param string $selectwhere SQL selector.
-     * @param array $params Parameters.
-     * @param string $sort Sort.
-     * @param int $limitfrom Offset.
-     * @param int $limitnum Limit.
-     * @return Traversable
-     */
-    public function get_events_select_iterator($selectwhere, array $params, $sort, $limitfrom, $limitnum) {
-        return new ArrayIterator([$this->event]);
-    }
-
-    /**
-     * Convert raw record into event.
-     *
-     * @param stdClass $data Raw record.
-     * @return base
-     */
-    public function get_log_event($data) {
-        return $this->event;
-    }
-}
 
 /**
  * Repository tests.
