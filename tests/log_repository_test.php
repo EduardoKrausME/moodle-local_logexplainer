@@ -24,6 +24,8 @@
 
 namespace local_logexplainer;
 
+defined('MOODLE_INTERNAL') || die();
+
 require_once(__DIR__ . '/fixtures/fake_sql_reader.php');
 
 use advanced_testcase;
