@@ -1,23 +1,7 @@
 # local_logexplainer
 
-Moodle 4.5+ local plugin that converts authorised Moodle log events into a factual timeline and then
+Moodle local plugin that converts authorised Moodle log events into a factual timeline and then
 asks `local_ai_bridge` to explain that sequence without inventing missing events.
-
-## Requirements
-
-- Moodle 4.5+
-- `local_ai_bridge >= 2026093001`
-- AI purpose configured as `logexplainer-explain`
-- An enabled Moodle log reader implementing `core\\log\\sql_reader`
-
-All AI calls go exclusively through:
-
-```php
-\local_ai_bridge\api::generate('logexplainer-explain', $messages);
-```
-
-The plugin never stores provider credentials and never calls OpenAI, Gemini, Claude, Ollama, or another provider
-directly.
 
 ## Access model
 
@@ -52,27 +36,3 @@ must be explicitly qualified as possibilities.
 2. User + activity.
 3. Exact Moodle event class.
 4. Summarised timeline for the selected filters/period.
-
-## Installation
-
-Copy the directory to:
-
-```text
-local/logexplainer
-```
-
-Then complete the normal Moodle upgrade process and configure the `logexplainer-explain` purpose in AI Bridge.
-
-## Tests
-
-The PHPUnit suite covers capability checks, target user access, activity/course context, query construction, event
-formatting, malformed AI output, invented AI evidence IDs, and the privacy null provider.
-
-## CI
-
-GitHub Actions runs Moodle Plugin CI on Moodle 4.5 with PHP 8.1 and PostgreSQL/MariaDB, including PHP lint, validation,
-Moodle Code Checker and PHPUnit, plus `EduardoKrausME/moodle-plugin-validate`.
-
-## License
-
-GNU GPL v3 or later.
