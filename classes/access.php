@@ -95,7 +95,7 @@ class access {
         $cm = $modinfo->get_cm($cmid);
         $context = context_module::instance($cmid);
 
-        $groupmode = groups_get_activity_groupmode($cm);
+        $groupmode = (int) groups_get_activity_groupmode($cm);
         if ($groupmode !== SEPARATEGROUPS || has_capability('moodle/site:accessallgroups', $context)) {
             return;
         }
