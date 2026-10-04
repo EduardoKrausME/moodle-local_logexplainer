@@ -130,17 +130,19 @@ final class access_test extends advanced_testcase {
         $studentrole = $this->getDataGenerator()->create_role();
         $this->getDataGenerator()->enrol_user($viewer->id, $course->id, $studentrole);
         $this->getDataGenerator()->enrol_user($target->id, $course->id, $studentrole);
-        $context = context_course::instance($course->id);
-        assign_capability('moodle/site:accessallgroups', CAP_PROHIBIT, $studentrole, $context->id);
         $groupa = $this->getDataGenerator()->create_group(['courseid' => $course->id]);
         $groupb = $this->getDataGenerator()->create_group(['courseid' => $course->id]);
         groups_add_member($groupa, $viewer);
         groups_add_member($groupb, $target);
-        $forum = $this->getDataGenerator()->create_module('forum', [
-            'course' => $course->id,
-            'groupmode' => SEPARATEGROUPS,
-        ]);
+        $forum = $this->getDataGenerator()->create_module('forum', ['course' => $course->id]);
+        set_coursemodule_groupmode($forum->cmid, SEPARATEGROUPS);
+        $modulecontext = \context_module::instance($forum->cmid);
+        assign_capability('moodle/site:accessallgroups', CAP_PROHIBIT, $studentrole, $modulecontext->id);
         $this->setUser($viewer);
+
+        $cm = get_fast_modinfo($course)->get_cm($forum->cmid);
+        $this->assertSame(SEPARATEGROUPS, groups_get_activity_groupmode($cm));
+        $this->assertFalse(has_capability('moodle/site:accessallgroups', $modulecontext));
 
         $this->expectException(required_capability_exception::class);
         access::require_activity_target_user($course->id, $forum->cmid, $target->id);
