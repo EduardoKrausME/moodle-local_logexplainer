@@ -141,7 +141,7 @@ final class access_test extends advanced_testcase {
         $this->setUser($viewer);
 
         $cm = get_fast_modinfo($course)->get_cm($forum->cmid);
-        $this->assertSame(SEPARATEGROUPS, groups_get_activity_groupmode($cm));
+        $this->assertSame(SEPARATEGROUPS, (int) groups_get_activity_groupmode($cm));
         $this->assertFalse(has_capability('moodle/site:accessallgroups', $modulecontext));
 
         $this->expectException(required_capability_exception::class);
