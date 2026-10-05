@@ -19,6 +19,8 @@ namespace local_logexplainer\form;
 use local_logexplainer\query;
 use moodleform;
 
+require_once(__DIR__ . '/../../../../lib/formslib.php');
+
 /**
  * Log explainer filter form.
  *
