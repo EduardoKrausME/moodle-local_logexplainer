@@ -19,6 +19,7 @@ namespace local_logexplainer\form;
 use local_logexplainer\query;
 use moodleform;
 
+defined('MOODLE_INTERNAL') || die;
 require_once(__DIR__ . '/../../../../lib/formslib.php');
 
 /**
