@@ -77,6 +77,15 @@ final class access_test extends advanced_testcase {
     }
 
     /**
+     * Moodle exceptions must resolve the message in this plugin, not core_error.
+     */
+    public function test_notingroup_error_uses_plugin_language_string(): void {
+        $this->assertTrue(get_string_manager()->string_exists('notingroup', 'local_logexplainer'));
+        $exception = new \moodle_exception('notingroup', 'local_logexplainer');
+        $this->assertSame(get_string('notingroup', 'local_logexplainer'), $exception->getMessage());
+    }
+
+    /**
      * Method test_target_user_must_belong_to_course.
      *
      * @return void Return value.

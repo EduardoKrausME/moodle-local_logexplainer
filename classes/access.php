@@ -42,7 +42,7 @@ class access {
         require_capability('local/logexplainer:view', $context);
         require_capability('report/log:view', $context);
         if (!report_helper::has_valid_group($context)) {
-            throw new moodle_exception('notingroup');
+            throw new moodle_exception('notingroup', 'local_logexplainer');
         }
     }
 
