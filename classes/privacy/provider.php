@@ -61,7 +61,7 @@ class provider implements metadata_provider, request_provider {
             'description' => 'privacy:metadata:aiprovider:description',
         ], 'privacy:metadata:aiprovider');
 
-        // local_ai_bridge is the transport, not an extra local data store.
+        // The local_ai_bridge plugin transports the payload but does not store it here.
         // No add_plugin_link() API exists in the supported Moodle privacy collection.
         return $collection;
     }
